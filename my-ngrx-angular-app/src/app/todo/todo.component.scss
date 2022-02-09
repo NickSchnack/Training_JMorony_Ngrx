@@ -64,15 +64,21 @@ header {
                 }
     
                 button {
+                    background-color: white;
                     border-radius: 50%;
                     box-shadow: 0px 0px 5px darkred;
+                    color: darkred;
                     cursor: pointer;
+                    font-size: 20px;
+                    font-weight: bold;
                     height: 25px;
-                    width: 25px;    
+                    line-height: 0px;
+                    width: 25px;  
                 }
     
                 button:active {
                     background-color: darkred;
+                    color: white;
                 }
             }
         }
