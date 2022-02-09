@@ -5,16 +5,16 @@
 </div>
 
 <div class="container todo-button">
-    <button (click)="addToDoItem(todo_textbox_input.value)">ADD TODO</button>
+    <button (click)="addToDo(todo_textbox_input.value)">ADD TODO</button>
 </div>
 
 <div class="container todo-list">
-    <ul *ngIf="todoItems">
-        <li *ngFor="let item of todoItems">
-            <p>{{item.name}}</p>
+    <ul *ngIf="todos">
+        <li *ngFor="let todo of todos">
+            <p>{{todo.name}}</p>
             <span>
-                <input type="checkbox" [(ngModel)]="item.isComplete" (change)="evaluateCheckbox(item)">
-                <button (click)="deleteToDoItem(item)">X</button>
+                <input type="checkbox" [(ngModel)]="todo.isComplete" (change)="evaluateCheckbox(todo)">
+                <button (click)="deleteToDo(todo)">X</button>
             </span>
         </li>
     </ul>

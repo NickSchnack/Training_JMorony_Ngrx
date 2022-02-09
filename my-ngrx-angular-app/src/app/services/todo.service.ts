@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../models/item.model';
+import { Todo } from '../models/todo.model';
 
 @Injectable({
   providedIn: 'root'
@@ -8,49 +8,49 @@ export class TodoService {
 
   constructor() { }
 
-  getItems() {
-    let itemData = window.localStorage.getItem('items');
-    let itemsStored: Item[] = [];
-    if (itemData !== null) {
-      itemsStored = JSON.parse(itemData);
+  getToDos() {
+    let todoData = window.localStorage.getItem('todos');
+    let todosStored: Todo[] = [];
+    if (todoData !== null) {
+      todosStored = JSON.parse(todoData);
     }
-    return itemsStored;
+    return todosStored;
   }
 
-  addItem(addItem: string) {
-    let itemsStored: Item[] = [];
-    itemsStored = this.getItems()
+  addToDo(addTodo: string) {
+    let todosStored: Todo[] = [];
+    todosStored = this.getToDos()
     
-    let item: Item = {
-      id: itemsStored.length + 1,
-      name: addItem,
+    let todo: Todo = {
+      id: todosStored.length + 1,
+      name: addTodo,
       isComplete: false
     };
 
-    itemsStored.push(item);
-    window.localStorage.setItem('items', JSON.stringify(itemsStored));
+    todosStored.push(todo);
+    window.localStorage.setItem('todos', JSON.stringify(todosStored));
   }
 
-  deleteItem(deleteItem: Item) {
-    let itemsStored: Item[] = [];
-    itemsStored = this.getItems()
+  deleteToDo(deleteTodo: Todo) {
+    let todosStored: Todo[] = [];
+    todosStored = this.getToDos()
 
-    let saved = itemsStored.filter(item => {
-      return item.id !== deleteItem.id;
+    let saved = todosStored.filter(todo => {
+      return todo.id !== deleteTodo.id;
     });
 
-    window.localStorage.setItem('items', JSON.stringify(saved));
+    window.localStorage.setItem('todos', JSON.stringify(saved));
   }
 
-  updateItem(updateItem: Item) {
-    let itemsStored: Item[] = [];
-    itemsStored = this.getItems()
+  updateToDo(updateTodo: Todo) {
+    let todosStored: Todo[] = [];
+    todosStored = this.getToDos()
 
-    let oldItemIndex = itemsStored.findIndex(item => {
-      return item.id == updateItem.id;
+    let oldTodoIndex = todosStored.findIndex(todo => {
+      return todo.id == updateTodo.id;
     });
 
-    itemsStored[oldItemIndex] = updateItem;   
-    window.localStorage.setItem('items', JSON.stringify(itemsStored));
+    todosStored[oldTodoIndex] = updateTodo;   
+    window.localStorage.setItem('todos', JSON.stringify(todosStored));
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoService } from '../services/todo.service';
-import { Item } from '../models/item.model'
+import { Todo } from '../models/todo.model'
 
 @Component({
   selector: 'app-todo',
@@ -9,32 +9,32 @@ import { Item } from '../models/item.model'
 })
 export class TodoComponent implements OnInit {
 
-  todoItems: Item[] = [];
+  todos: Todo[] = [];
   @ViewChild('todo_textbox_input') todoUserInput;
 
   constructor(private _todoService: TodoService) { 
-    this.todoItems = this._todoService.getItems();
+    this.todos = this._todoService.getToDos();
   }
 
   ngOnInit(): void {
   }
   
-  addToDoItem(name: string): void {
+  addToDo(name: string): void {
     console.log('Add ' + name);
     if(name !== '') {
-      this._todoService.addItem(name);
-      this.todoItems = this._todoService.getItems();
+      this._todoService.addToDo(name);
+      this.todos = this._todoService.getToDos();
     }
     this.todoUserInput.nativeElement.value = '';
   }
 
-  deleteToDoItem(item: Item): void {
+  deleteToDo(todo: Todo): void {
     console.log('Delete ' + name);
-    this._todoService.deleteItem(item);
-    this.todoItems = this._todoService.getItems();
+    this._todoService.deleteToDo(todo);
+    this.todos = this._todoService.getToDos();
   }
 
-  evaluateCheckbox(item: Item){
-    this._todoService.updateItem(item);
+  evaluateCheckbox(todo: Todo){
+    this._todoService.updateToDo(todo);
   }
 }
