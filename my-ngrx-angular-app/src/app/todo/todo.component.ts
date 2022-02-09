@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TodoService } from '../services/todo.service';
-import { Todo } from '../models/todo.model'
+import { Todo } from '../models/todo.model';
 
 @Component({
   selector: 'app-todo',
@@ -10,25 +10,24 @@ import { Todo } from '../models/todo.model'
 export class TodoComponent implements OnInit {
 
   todos: Todo[] = [];
-  @ViewChild('todo_textbox_input') todoUserInput;
+  public todoUserInput: string = '';
 
   constructor(private _todoService: TodoService) { 
     this.todos = this._todoService.getToDos();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
   
-  addToDo(name: string): void {
-    console.log('Add ' + name);
-    if(name !== '') {
-      this._todoService.addToDo(name);
+  addToDo() {
+    if(this.todoUserInput !== '') {
+      this._todoService.addToDo(this.todoUserInput);
       this.todos = this._todoService.getToDos();
     }
-    this.todoUserInput.nativeElement.value = '';
+    this.todoUserInput = '';
   }
 
-  deleteToDo(todo: Todo): void {
+  deleteToDo(todo: Todo) {
     console.log('Delete ' + name);
     this._todoService.deleteToDo(todo);
     this.todos = this._todoService.getToDos();

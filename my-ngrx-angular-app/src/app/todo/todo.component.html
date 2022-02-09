@@ -1,11 +1,11 @@
 <header>Let's get things done</header>
 
 <div class="container todo-textbox">
-    <input type="text" #todo_textbox_input>
+    <input type="text" [(ngModel)]="todoUserInput" >
 </div>
 
 <div class="container todo-button">
-    <button (click)="addToDo(todo_textbox_input.value)">ADD TODO</button>
+    <button (click)="addToDo()">ADD TODO</button>
 </div>
 
 <div class="container todo-list">
