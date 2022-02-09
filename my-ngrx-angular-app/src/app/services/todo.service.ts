@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo.model';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class TodoService {
     todosStored = this.getTodos()
     
     let todo: Todo = {
-      id: todosStored.length + 1,
+      guid: uuidv4(),
       name: addTodo,
       isComplete: false
     };
@@ -36,21 +37,21 @@ export class TodoService {
     todosStored = this.getTodos()
 
     let saved = todosStored.filter(todo => {
-      return todo.id !== deleteTodo.id;
+      return todo.guid !== deleteTodo.guid;
     });
 
     window.localStorage.setItem('todos', JSON.stringify(saved));
   }
 
-  updateTodo(updateTodo: Todo) {
+  updateTodo(modifiedTodo: Todo) {
     let todosStored: Todo[] = [];
     todosStored = this.getTodos()
 
     let oldTodoIndex = todosStored.findIndex(todo => {
-      return todo.id == updateTodo.id;
+      return todo.guid == modifiedTodo.guid;
     });
 
-    todosStored[oldTodoIndex] = updateTodo;   
+    todosStored[oldTodoIndex] = modifiedTodo;   
     window.localStorage.setItem('todos', JSON.stringify(todosStored));
   }
 }

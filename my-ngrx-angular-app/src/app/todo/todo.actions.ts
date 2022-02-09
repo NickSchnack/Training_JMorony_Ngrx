@@ -7,6 +7,6 @@ export const addTodo = createAction(
 
 export const deleteTodo = createAction(
     '[Todo Component] Delete Todo',
-    props<{id: number}>()
+    props<{guid: string}>()
 );
 
