@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito', 'sans-serif';
+    font-size: 18px;
+    background-color: white;
+}
+
+header {
+    display: flex;
+    font-size: 40px;
+    margin: 30px 45px;
+}
+
+.container {
+    display: flex;
+    margin: 30px auto;
+    max-width: 800px;
+}

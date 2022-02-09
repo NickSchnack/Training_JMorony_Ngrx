@@ -1,0 +1,21 @@
+<header>Let's get things done</header>
+
+<div class="container todo-textbox">
+    <input type="text" #todo_textbox_input>
+</div>
+
+<div class="container todo-button">
+    <button (click)="addToDoItem(todo_textbox_input.value)">ADD TODO</button>
+</div>
+
+<div class="container todo-list">
+    <ul *ngIf="todoItems">
+        <li *ngFor="let item of todoItems">
+            <p>{{item.name}}</p>
+            <span>
+                <input type="checkbox" [(ngModel)]="item.isComplete" (change)="evaluateCheckbox(item)">
+                <button (click)="deleteToDoItem(item)">X</button>
+            </span>
+        </li>
+    </ul>
+</div>

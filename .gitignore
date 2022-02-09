@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# VS Code
+.vscode/
+
+# Angular
+my-ngrx-angular-app/.angular/cache
