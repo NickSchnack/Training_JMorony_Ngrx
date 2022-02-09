@@ -13,7 +13,7 @@ export class TodoComponent implements OnInit {
   public todoUserInput: string = '';
 
   constructor(private _todoService: TodoService) { 
-    this.todos = this._todoService.getToDos();
+    this.todos = this._todoService.getTodos();
   }
 
   ngOnInit() {
@@ -29,11 +29,11 @@ export class TodoComponent implements OnInit {
 
   deleteToDo(todo: Todo) {
     console.log('Delete ' + name);
-    this._todoService.deleteToDo(todo);
-    this.todos = this._todoService.getToDos();
+    this._todoService.deleteTodo(todo);
+    this.todos = this._todoService.getTodos();
   }
 
   evaluateCheckbox(todo: Todo){
-    this._todoService.updateToDo(todo);
+    this._todoService.updateTodo(todo);
   }
 }

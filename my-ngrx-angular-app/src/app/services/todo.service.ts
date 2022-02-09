@@ -8,7 +8,7 @@ export class TodoService {
 
   constructor() { }
 
-  getToDos() {
+  getTodos() {
     let todoData = window.localStorage.getItem('todos');
     let todosStored: Todo[] = [];
     if (todoData !== null) {
@@ -17,9 +17,9 @@ export class TodoService {
     return todosStored;
   }
 
-  addToDo(addTodo: string) {
+  addTodo(addTodo: string) {
     let todosStored: Todo[] = [];
-    todosStored = this.getToDos()
+    todosStored = this.getTodos()
     
     let todo: Todo = {
       id: todosStored.length + 1,
@@ -31,9 +31,9 @@ export class TodoService {
     window.localStorage.setItem('todos', JSON.stringify(todosStored));
   }
 
-  deleteToDo(deleteTodo: Todo) {
+  deleteTodo(deleteTodo: Todo) {
     let todosStored: Todo[] = [];
-    todosStored = this.getToDos()
+    todosStored = this.getTodos()
 
     let saved = todosStored.filter(todo => {
       return todo.id !== deleteTodo.id;
@@ -42,9 +42,9 @@ export class TodoService {
     window.localStorage.setItem('todos', JSON.stringify(saved));
   }
 
-  updateToDo(updateTodo: Todo) {
+  updateTodo(updateTodo: Todo) {
     let todosStored: Todo[] = [];
-    todosStored = this.getToDos()
+    todosStored = this.getTodos()
 
     let oldTodoIndex = todosStored.findIndex(todo => {
       return todo.id == updateTodo.id;

@@ -14,7 +14,7 @@
             <p>{{todo.name}}</p>
             <span>
                 <input type="checkbox" [(ngModel)]="todo.isComplete" (change)="evaluateCheckbox(todo)">
-                <button (click)="deleteToDo(todo)">X</button>
+                <button (click)="deleteTodo(todo)">X</button>
             </span>
         </li>
     </ul>
