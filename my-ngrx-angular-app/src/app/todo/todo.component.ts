@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TodoService } from '../services/todo.service';
+//import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/todo.model';
-import { addTodo, deleteTodo } from './todo.actions';
+import { addTodo,
+         deleteTodo,
+         loadTodos } from './todo.actions';
+import { selectAllTodos } from '../todo/todo.selectors'
 
 @Component({
   selector: 'app-todo',
@@ -10,16 +13,15 @@ import { addTodo, deleteTodo } from './todo.actions';
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
-
-  todos: Todo[] = [];
+  
+  public todos$ = this.store.select(selectAllTodos)
   public todoUserInput: string = '';
-
-  constructor( private store: Store,    
-               private _todoService: TodoService) { 
-    this.todos = this._todoService.getTodos();
-  }
+  
+  constructor( private store: Store<any> ) {}
+  //STRICT MODE ISSUE: https://github.com/ngrx/platform/issues/2780
 
   ngOnInit() {
+    this.store.dispatch(loadTodos());
   }
   
   addTodo() {
@@ -36,6 +38,6 @@ export class TodoComponent implements OnInit {
   }
 
   evaluateCheckbox(todo: Todo){
-    this._todoService.updateTodo(todo);
+    //this._todoService.updateTodo(todo);
   }
 }

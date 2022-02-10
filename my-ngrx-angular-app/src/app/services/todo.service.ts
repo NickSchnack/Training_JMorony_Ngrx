@@ -9,7 +9,7 @@ export class TodoService {
 
   constructor() { }
 
-  getTodos() {
+  async getTodos(): Promise<Todo[]> {
     let todoData = window.localStorage.getItem('todos');
     let todosStored: Todo[] = [];
     if (todoData !== null) {
@@ -18,6 +18,11 @@ export class TodoService {
     return todosStored;
   }
 
+  async saveTodos(todos: Todo[]) {
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+  }
+
+  /*
   addTodo(addTodo: string) {
     let todosStored: Todo[] = [];
     todosStored = this.getTodos()
@@ -54,4 +59,5 @@ export class TodoService {
     todosStored[oldTodoIndex] = modifiedTodo;   
     window.localStorage.setItem('todos', JSON.stringify(todosStored));
   }
+  */
 }

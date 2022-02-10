@@ -9,8 +9,8 @@
 </div>
 
 <div class="container todo-list">
-    <ul *ngIf="todos">
-        <li *ngFor="let todo of todos">
+    <ul *ngIf="todos$">
+        <li *ngFor="let todo of todos$ | async">
             <p>{{todo.name}}</p>
             <span>
                 <input type="checkbox" [(ngModel)]="todo.isComplete" (change)="evaluateCheckbox(todo)">
@@ -19,3 +19,4 @@
         </li>
     </ul>
 </div>
+
