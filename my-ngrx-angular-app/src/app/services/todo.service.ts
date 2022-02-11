@@ -21,43 +21,4 @@ export class TodoService {
   async saveTodos(todos: Todo[]) {
     window.localStorage.setItem('todos', JSON.stringify(todos));
   }
-
-  /*
-  addTodo(addTodo: string) {
-    let todosStored: Todo[] = [];
-    todosStored = this.getTodos()
-    
-    let todo: Todo = {
-      guid: uuidv4(),
-      name: addTodo,
-      isComplete: false
-    };
-
-    todosStored.push(todo);
-    window.localStorage.setItem('todos', JSON.stringify(todosStored));
-  }
-
-  deleteTodo(deleteTodo: Todo) {
-    let todosStored: Todo[] = [];
-    todosStored = this.getTodos()
-
-    let saved = todosStored.filter(todo => {
-      return todo.guid !== deleteTodo.guid;
-    });
-
-    window.localStorage.setItem('todos', JSON.stringify(saved));
-  }
-
-  updateTodo(modifiedTodo: Todo) {
-    let todosStored: Todo[] = [];
-    todosStored = this.getTodos()
-
-    let oldTodoIndex = todosStored.findIndex(todo => {
-      return todo.guid == modifiedTodo.guid;
-    });
-
-    todosStored[oldTodoIndex] = modifiedTodo;   
-    window.localStorage.setItem('todos', JSON.stringify(todosStored));
-  }
-  */
 }

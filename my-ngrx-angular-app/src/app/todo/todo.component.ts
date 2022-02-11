@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-//import { TodoService } from '../services/todo.service';
 import { Todo } from '../models/todo.model';
 import { addTodo,
+         completeTodo,
+         uncompleteTodo,
          deleteTodo,
          loadTodos } from './todo.actions';
 import { selectAllTodos } from '../todo/todo.selectors'
@@ -28,8 +29,6 @@ export class TodoComponent implements OnInit {
     if(this.todoUserInput !== '') {
       this.store.dispatch(addTodo({ content: this.todoUserInput}));
       this.todoUserInput = '';
-      //this._todoService.addTodo(this.todoUserInput);
-      //this.todos = this._todoService.getTodos();
     }
   }
 
@@ -37,7 +36,13 @@ export class TodoComponent implements OnInit {
     this.store.dispatch(deleteTodo({ guid: todo.guid }));
   }
 
-  evaluateCheckbox(todo: Todo){
-    //this._todoService.updateTodo(todo);
+  evaluateTodoStatus(todo: Todo, $event) {
+    console.log($event.target.checked.value);
+    if ($event.target.checked === true) {
+      this.store.dispatch(completeTodo({ guid: todo.guid }));
+    }
+    else {
+      this.store.dispatch(uncompleteTodo({ guid: todo.guid }));
+    }
   }
 }

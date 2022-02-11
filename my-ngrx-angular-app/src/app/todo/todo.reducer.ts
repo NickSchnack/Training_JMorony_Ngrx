@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { Todo } from '../models/todo.model';
 import { addTodo,
     deleteTodo,
+    completeTodo,
+    uncompleteTodo,
     loadTodos,
     loadTodosSuccess,
     loadTodosFailure } from './todo.actions';
@@ -31,6 +33,36 @@ export const todoReducer = createReducer (
         ...state,
         todos: state.todos.filter((todo) => todo.guid !== guid)
     })),
+
+    on(completeTodo, (state, {guid}) => {
+        let todoIndex = state.todos.findIndex((t) => t.guid == guid);
+        return {
+            ...state,
+            todos: [
+                ...state.todos.slice(0,todoIndex),
+                {
+                    ...state.todos[todoIndex],
+                    isComplete: true
+                },
+                ...state.todos.slice(todoIndex + 1)
+            ]
+        }
+    }),
+    
+    on(uncompleteTodo, (state, {guid}) => {
+        let todoIndex = state.todos.findIndex((t) => t.guid == guid);
+        return {
+            ...state,
+            todos: [
+                ...state.todos.slice(0,todoIndex),
+                {
+                    ...state.todos[todoIndex],
+                    isComplete: false
+                },
+                ...state.todos.slice(todoIndex + 1)
+            ]
+        }
+    }),
 
     on(loadTodos, (state) => ({ ...state, status: 'loading' })),
 

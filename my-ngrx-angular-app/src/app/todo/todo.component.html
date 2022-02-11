@@ -13,7 +13,7 @@
         <li *ngFor="let todo of todos$ | async">
             <p>{{todo.name}}</p>
             <span>
-                <input type="checkbox" [(ngModel)]="todo.isComplete" (change)="evaluateCheckbox(todo)">
+                <input type="checkbox" [checked]="todo.isComplete" (change)="evaluateTodoStatus(todo, $event)">
                 <button (click)="deleteTodo(todo)">X</button>
             </span>
         </li>

@@ -7,6 +7,8 @@ import { catchError, from, map, of, switchMap, withLatestFrom } from "rxjs";
 import { selectAllTodos } from '../todo/todo.selectors'
 import { addTodo,
     deleteTodo,
+    completeTodo,
+    uncompleteTodo,
     loadTodos,
     loadTodosFailure,
     loadTodosSuccess } from "./todo.actions";
@@ -39,7 +41,7 @@ export class TodoEffects {
     // Run this code when the addTodo or deleteTodo action is dispatched
     saveTodos$ = createEffect(() =>
         this.actions$.pipe(
-            ofType(addTodo, deleteTodo),
+            ofType(addTodo, deleteTodo, completeTodo, uncompleteTodo),
             withLatestFrom(this.store.select(selectAllTodos)),
             switchMap(([action, todos]) => from(this.todoService.saveTodos(todos)))
         ),
@@ -47,5 +49,3 @@ export class TodoEffects {
         { dispatch: false }
     );
 }
-
-
